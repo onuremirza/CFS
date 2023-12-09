@@ -27,7 +27,7 @@ router.delete("/byId/:deleteId", async (req, res) => {
 router.post("/saled/byId/:id", async (req, res) => {
   const response = req.params.id;
   await Cars.update({ saled: 1 }, { where: { id: response } });
-  console.log("Updated.");
+  res.send("Updated.");
 });
 
 module.exports = router;

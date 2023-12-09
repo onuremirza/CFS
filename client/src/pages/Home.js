@@ -15,8 +15,9 @@ function Home() {
   return (
     <div className="flex flex-wrap m-4 p-0">
       {listOfCars.map((value, key) => {
+        // eslint-disable-next-line
         if (value.saled == 1) {
-          return;
+          return null;
         } else {
           return (
             <div
@@ -32,9 +33,6 @@ function Home() {
                   <div className="">Year: {value.year}</div>
                   <div className="">Kilometer: {value.kilometer}</div>
                   <div className="">Price: {value.price}</div>
-                  <button className="border w-full rounded-lg shadow-lg">
-                    BUY
-                  </button>
                 </div>
               </div>
             </div>
