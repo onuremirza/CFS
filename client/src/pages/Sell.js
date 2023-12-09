@@ -27,10 +27,11 @@ function Sell() {
     image: Yup.string().required(),
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/api/cars", data).then((response) => {
-      navigate.push("/");
+      navigate("/");
     });
   };
 

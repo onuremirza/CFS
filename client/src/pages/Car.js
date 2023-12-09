@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Car() {
-  let { id } = useParams();
-
   const [carObject, setCarObject] = useState({});
+  let { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/api/cars/byId/${id}`).then((response) => {
       setCarObject(response.data);
     });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  let navigate = useNavigate();
-  const onSubmit = (carObject) => {
+  const navigate = useNavigate();
+  const onSubmit = () => {
     axios
-      .post(`http://localhost:3001/api/cars/saled/${id}`)
+      .post(`http://localhost:3001/api/cars/saled/byId/${id}`)
       .then((response) => {
-        navigate.push("/");
+        navigate("/");
       });
   };
 
@@ -60,7 +59,6 @@ function Car() {
         </div>
       </div>
       <button
-        type="submit"
         onClick={onSubmit}
         className="border mt-2 p-4 px-24 shadow-sm rounded-lg hover:bg-gray-200 duration-500"
       >

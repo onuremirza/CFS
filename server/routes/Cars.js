@@ -24,10 +24,10 @@ router.delete("/byId/:deleteId", async (req, res) => {
   const result = await Cars.destroy({ where: { id: deleteId } });
   res.json(result);
 });
-router.post("/saled/:saledId", async (res, req) => {
-  let saledId = req.params.saledId;
-  console.log(saledId);
-  // const Car = await Cars.findByPk(saledId);
+router.post("/saled/byId/:id", async (req, res) => {
+  const response = req.params.id;
+  await Cars.update({ saled: 1 }, { where: { id: response } });
+  console.log("Updated.");
 });
 
 module.exports = router;
